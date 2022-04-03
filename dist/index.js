@@ -5,10 +5,7 @@ var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
-var __require = typeof require !== "undefined" ? require : (x) => {
-  throw new Error('Dynamic require of "' + x + '" is not supported');
-};
-var __commonJS = (cb, mod) => function __require2() {
+var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var __reExport = (target, module2, desc) => {
@@ -1046,7 +1043,7 @@ var require_react_development = __commonJS({
           }
           return dispatcher.useContext(Context, unstable_observedBits);
         }
-        function useState(initialState) {
+        function useState4(initialState) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useState(initialState);
         }
@@ -1054,11 +1051,11 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useReducer(reducer, initialArg, init);
         }
-        function useRef(initialValue) {
+        function useRef3(initialValue) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useRef(initialValue);
         }
-        function useEffect(create, deps) {
+        function useEffect3(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useEffect(create, deps);
         }
@@ -1628,13 +1625,13 @@ var require_react_development = __commonJS({
         exports2.useCallback = useCallback;
         exports2.useContext = useContext;
         exports2.useDebugValue = useDebugValue;
-        exports2.useEffect = useEffect;
+        exports2.useEffect = useEffect3;
         exports2.useImperativeHandle = useImperativeHandle;
         exports2.useLayoutEffect = useLayoutEffect;
         exports2.useMemo = useMemo;
         exports2.useReducer = useReducer;
-        exports2.useRef = useRef;
-        exports2.useState = useState;
+        exports2.useRef = useRef3;
+        exports2.useState = useState4;
         exports2.version = ReactVersion;
       })();
     }
@@ -2442,11 +2439,11 @@ var require_react_dom_development = __commonJS({
     if (true) {
       (function() {
         "use strict";
-        var React3 = require_react();
+        var React6 = require_react();
         var _assign = require_object_assign();
         var Scheduler = require_scheduler();
         var tracing = require_tracing();
-        var ReactSharedInternals = React3.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React6.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         function warn(format) {
           {
             for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2478,7 +2475,7 @@ var require_react_dom_development = __commonJS({
             Function.prototype.apply.call(console[level], console, argsWithFormat);
           }
         }
-        if (!React3) {
+        if (!React6) {
           {
             throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
           }
@@ -3694,7 +3691,7 @@ var require_react_dom_development = __commonJS({
         var didWarnInvalidChild = false;
         function flattenChildren(children) {
           var content = "";
-          React3.Children.forEach(children, function(child) {
+          React6.Children.forEach(children, function(child) {
             if (child == null) {
               return;
             }
@@ -3705,7 +3702,7 @@ var require_react_dom_development = __commonJS({
         function validateProps(element, props) {
           {
             if (typeof props.children === "object" && props.children !== null) {
-              React3.Children.forEach(props.children, function(child) {
+              React6.Children.forEach(props.children, function(child) {
                 if (child == null) {
                   return;
                 }
@@ -10898,7 +10895,7 @@ var require_react_dom_development = __commonJS({
         }
         var fakeInternalInstance = {};
         var isArray = Array.isArray;
-        var emptyRefsObject = new React3.Component().refs;
+        var emptyRefsObject = new React6.Component().refs;
         var didWarnAboutStateAssignmentForComponent;
         var didWarnAboutUninitializedState;
         var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -20421,18 +20418,276 @@ var require_react_dom = __commonJS({
   }
 });
 
-// src/index.jsx
-var import_react2 = __toModule(require_react());
+// src/index.js
+var import_react5 = __toModule(require_react());
 var import_react_dom = __toModule(require_react_dom());
 
-// src/App.jsx
+// src/App.js
+var import_react4 = __toModule(require_react());
+
+// src/components/Form.js
 var import_react = __toModule(require_react());
-function App() {
-  return /* @__PURE__ */ import_react.default.createElement("div", null, "Hello World!");
+function Form(props) {
+  const [name, setName] = (0, import_react.useState)("");
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!name.trim()) {
+      return;
+    }
+    props.addTask(name);
+    setName("");
+  }
+  function handleChange(e) {
+    setName(e.target.value);
+  }
+  return /* @__PURE__ */ import_react.default.createElement("form", {
+    onSubmit: handleSubmit
+  }, /* @__PURE__ */ import_react.default.createElement("h2", {
+    className: "label-wrapper"
+  }, /* @__PURE__ */ import_react.default.createElement("label", {
+    htmlFor: "new-todo-input",
+    className: "label__lg"
+  }, "What needs to be done?")), /* @__PURE__ */ import_react.default.createElement("input", {
+    type: "text",
+    id: "new-todo-input",
+    className: "input input__lg",
+    name: "text",
+    autoComplete: "off",
+    value: name,
+    onChange: handleChange
+  }), /* @__PURE__ */ import_react.default.createElement("button", {
+    type: "submit",
+    className: "btn btn__primary btn__lg"
+  }, "Add"));
+}
+var Form_default = Form;
+
+// src/components/FilterButton.js
+var import_react2 = __toModule(require_react());
+function FilterButton(props) {
+  return /* @__PURE__ */ import_react2.default.createElement("button", {
+    type: "button",
+    className: "btn toggle-btn",
+    "aria-pressed": props.isPressed,
+    onClick: () => props.setFilter(props.name)
+  }, /* @__PURE__ */ import_react2.default.createElement("span", {
+    className: "visually-hidden"
+  }, "Show "), /* @__PURE__ */ import_react2.default.createElement("span", null, props.name), /* @__PURE__ */ import_react2.default.createElement("span", {
+    className: "visually-hidden"
+  }, " tasks"));
+}
+var FilterButton_default = FilterButton;
+
+// src/components/Todo.js
+var import_react3 = __toModule(require_react());
+function usePrevious(value) {
+  const ref = (0, import_react3.useRef)();
+  (0, import_react3.useEffect)(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+function Todo(props) {
+  const [isEditing, setEditing] = (0, import_react3.useState)(false);
+  const [newName, setNewName] = (0, import_react3.useState)("");
+  const editFieldRef = (0, import_react3.useRef)(null);
+  const editButtonRef = (0, import_react3.useRef)(null);
+  const wasEditing = usePrevious(isEditing);
+  function handleChange(e) {
+    setNewName(e.target.value);
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!newName.trim()) {
+      return;
+    }
+    props.editTask(props.id, newName);
+    setNewName("");
+    setEditing(false);
+  }
+  const editingTemplate = /* @__PURE__ */ import_react3.default.createElement("form", {
+    className: "stack-small",
+    onSubmit: handleSubmit
+  }, /* @__PURE__ */ import_react3.default.createElement("div", {
+    className: "form-group"
+  }, /* @__PURE__ */ import_react3.default.createElement("label", {
+    className: "todo-label",
+    htmlFor: props.id
+  }, "New name for ", props.name), /* @__PURE__ */ import_react3.default.createElement("input", {
+    id: props.id,
+    className: "todo-text",
+    type: "text",
+    value: newName || props.name,
+    onChange: handleChange,
+    ref: editFieldRef
+  })), /* @__PURE__ */ import_react3.default.createElement("div", {
+    className: "btn-group"
+  }, /* @__PURE__ */ import_react3.default.createElement("button", {
+    type: "button",
+    className: "btn todo-cancel",
+    onClick: () => setEditing(false)
+  }, "Cancel", /* @__PURE__ */ import_react3.default.createElement("span", {
+    className: "visually-hidden"
+  }, "renaming ", props.name)), /* @__PURE__ */ import_react3.default.createElement("button", {
+    type: "submit",
+    className: "btn btn__primary todo-edit"
+  }, "Save", /* @__PURE__ */ import_react3.default.createElement("span", {
+    className: "visually-hidden"
+  }, "new name for ", props.name))));
+  const viewTemplate = /* @__PURE__ */ import_react3.default.createElement("div", {
+    className: "stack-small"
+  }, /* @__PURE__ */ import_react3.default.createElement("div", {
+    className: "c-cb"
+  }, /* @__PURE__ */ import_react3.default.createElement("input", {
+    id: props.id,
+    type: "checkbox",
+    defaultChecked: props.completed,
+    onChange: () => props.toggleTaskCompleted(props.id)
+  }), /* @__PURE__ */ import_react3.default.createElement("label", {
+    className: "todo-label",
+    htmlFor: props.id
+  }, props.name)), /* @__PURE__ */ import_react3.default.createElement("div", {
+    className: "btn-group"
+  }, /* @__PURE__ */ import_react3.default.createElement("button", {
+    type: "button",
+    className: "btn",
+    onClick: () => setEditing(true),
+    ref: editButtonRef
+  }, "Edit ", /* @__PURE__ */ import_react3.default.createElement("span", {
+    className: "visually-hidden"
+  }, props.name)), /* @__PURE__ */ import_react3.default.createElement("button", {
+    type: "button",
+    className: "btn btn__danger",
+    onClick: () => props.deleteTask(props.id)
+  }, "Delete ", /* @__PURE__ */ import_react3.default.createElement("span", {
+    className: "visually-hidden"
+  }, props.name))));
+  (0, import_react3.useEffect)(() => {
+    if (!wasEditing && isEditing) {
+      editFieldRef.current.focus();
+    }
+    if (wasEditing && !isEditing) {
+      editButtonRef.current.focus();
+    }
+  }, [wasEditing, isEditing]);
+  return /* @__PURE__ */ import_react3.default.createElement("li", {
+    className: "todo"
+  }, isEditing ? editingTemplate : viewTemplate);
 }
 
-// src/index.jsx
-import_react_dom.default.render(/* @__PURE__ */ import_react2.default.createElement(App, null), document.getElementById("root"));
+// node_modules/nanoid/index.browser.js
+var nanoid = (size = 21) => {
+  let id = "";
+  let bytes = crypto.getRandomValues(new Uint8Array(size));
+  while (size--) {
+    let byte = bytes[size] & 63;
+    if (byte < 36) {
+      id += byte.toString(36);
+    } else if (byte < 62) {
+      id += (byte - 26).toString(36).toUpperCase();
+    } else if (byte < 63) {
+      id += "_";
+    } else {
+      id += "-";
+    }
+  }
+  return id;
+};
+
+// src/App.js
+function usePrevious2(value) {
+  const ref = (0, import_react4.useRef)();
+  (0, import_react4.useEffect)(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+var FILTER_MAP = {
+  All: () => true,
+  Active: (task) => !task.completed,
+  Completed: (task) => task.completed
+};
+var FILTER_NAMES = Object.keys(FILTER_MAP);
+function App(props) {
+  const [tasks, setTasks] = (0, import_react4.useState)(props.tasks);
+  const [filter, setFilter] = (0, import_react4.useState)("All");
+  function toggleTaskCompleted(id) {
+    const updatedTasks = tasks.map((task) => {
+      if (id === task.id) {
+        return { ...task, completed: !task.completed };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  }
+  function deleteTask(id) {
+    const remainingTasks = tasks.filter((task) => id !== task.id);
+    setTasks(remainingTasks);
+  }
+  function editTask(id, newName) {
+    const editedTaskList = tasks.map((task) => {
+      if (id === task.id) {
+        return { ...task, name: newName };
+      }
+      return task;
+    });
+    setTasks(editedTaskList);
+  }
+  const taskList = tasks.filter(FILTER_MAP[filter]).map((task) => /* @__PURE__ */ import_react4.default.createElement(Todo, {
+    id: task.id,
+    name: task.name,
+    completed: task.completed,
+    key: task.id,
+    toggleTaskCompleted,
+    deleteTask,
+    editTask
+  }));
+  const filterList = FILTER_NAMES.map((name) => /* @__PURE__ */ import_react4.default.createElement(FilterButton_default, {
+    key: name,
+    name,
+    isPressed: name === filter,
+    setFilter
+  }));
+  function addTask(name) {
+    const newTask = { id: "todo-" + nanoid(), name, completed: false };
+    setTasks([...tasks, newTask]);
+  }
+  const tasksNoun = taskList.length !== 1 ? "tasks" : "task";
+  const headingText = `${taskList.length} ${tasksNoun} remaining`;
+  const listHeadingRef = (0, import_react4.useRef)(null);
+  const prevTaskLength = usePrevious2(tasks.length);
+  (0, import_react4.useEffect)(() => {
+    if (tasks.length - prevTaskLength === -1) {
+      listHeadingRef.current.focus();
+    }
+  }, [tasks.length, prevTaskLength]);
+  return /* @__PURE__ */ import_react4.default.createElement("div", {
+    className: "todoapp stack-large"
+  }, /* @__PURE__ */ import_react4.default.createElement(Form_default, {
+    addTask
+  }), /* @__PURE__ */ import_react4.default.createElement("div", {
+    className: "filters btn-group stack-exception"
+  }, filterList), /* @__PURE__ */ import_react4.default.createElement("h2", {
+    id: "list-heading",
+    tabIndex: "-1",
+    ref: listHeadingRef
+  }, headingText), /* @__PURE__ */ import_react4.default.createElement("ul", {
+    role: "list",
+    className: "todo-list stack-large stack-exception",
+    "aria-labelledby": "list-heading"
+  }, taskList));
+}
+var App_default = App;
+
+// src/index.js
+var DATA = [
+  { id: "todo-0", name: "Run", completed: true },
+  { id: "todo-1", name: "Sleep and Eat", completed: false },
+  { id: "todo-2", name: "Repeat", completed: false }
+];
+import_react_dom.default.render(/* @__PURE__ */ import_react5.default.createElement(import_react5.default.StrictMode, null, /* @__PURE__ */ import_react5.default.createElement(App_default, {
+  tasks: DATA
+})), document.getElementById("root"));
 /*
 object-assign
 (c) Sindre Sorhus
